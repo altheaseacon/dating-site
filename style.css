@@ -86,7 +86,6 @@ main{ width:100%; height:100vh; }
 
 .screen.active{ display:flex; }
 
-/* Экран с местами - скролл сверху */
 #places{
     justify-content: flex-start;
     padding-top: 20px;
@@ -105,7 +104,7 @@ main{ width:100%; height:100vh; }
 
 .glass{
     width:min(600px,92%);
-    padding:40px 25px;
+    padding:35px 22px;
     border-radius:25px;
     backdrop-filter:blur(18px);
     background:rgba(255,255,255,.12);
@@ -129,15 +128,14 @@ main{ width:100%; height:100vh; }
 }
 
 .section-title{
-    margin-bottom:25px;
+    margin-bottom:22px;
     font-size:24px;
-    font-family: 'Press Start 2P', monospace;
     text-align:center;
 }
 
-h2{ font-size:26px; margin-bottom:20px; }
-h3{ margin-top:10px; margin-bottom:15px; font-size:18px; }
-.text{ font-size:16px; line-height:1.7; margin-bottom:18px; }
+h2{ font-size:26px; margin-bottom:18px; }
+h3{ margin-top:10px; margin-bottom:12px; font-size:18px; }
+.text{ font-size:16px; line-height:1.7; margin-bottom:16px; }
 .typing{ min-height:100px; font-size:16px; line-height:1.7; }
 
 
@@ -146,8 +144,8 @@ h3{ margin-top:10px; margin-bottom:15px; font-size:18px; }
 ================================ */
 
 .btn{
-    margin-top:20px;
-    padding:15px 30px;
+    margin-top:18px;
+    padding:15px 28px;
     border:none;
     border-radius:50px;
     cursor:pointer;
@@ -190,22 +188,22 @@ h3{ margin-top:10px; margin-bottom:15px; font-size:18px; }
     background: linear-gradient(135deg, #a855f7, #6366f1);
     box-shadow: 0 15px 35px rgba(168, 85, 247, 0.35);
     font-size: 15px;
-    padding: 15px 30px;
+    padding: 15px 28px;
 }
 
 
 /* ================================
-    CARDS
+    CARDS - ВСЕГДА ОДИН СТОЛБИК
 ================================ */
 
 .cards{
-    width:100%;
-    max-width:500px;
-    margin: 0 auto;
-    display:flex;
-    flex-direction: column;
-    gap:15px;
-    padding: 10px;
+    width:100% !important;
+    max-width:500px !important;
+    margin: 0 auto !important;
+    display:flex !important;
+    flex-direction: column !important;
+    gap:15px !important;
+    padding: 10px !important;
 }
 
 .card{
@@ -217,6 +215,7 @@ h3{ margin-top:10px; margin-bottom:15px; font-size:18px; }
     background:rgba(255,255,255,.10);
     border:1px solid rgba(255,255,255,.15);
     transition:.3s;
+    width:100% !important;
 }
 
 .card:hover{
@@ -350,9 +349,9 @@ input[type=date]{
     .typing{ font-size:14px; min-height:80px; }
     
     .cards{
-        max-width:100%;
-        gap:12px;
-        padding: 5px;
+        max-width:100% !important;
+        gap:12px !important;
+        padding: 5px !important;
     }
     
     .card{ padding:16px; }
