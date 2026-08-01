@@ -40,7 +40,7 @@ p, button, input,
     inset:0;
     background:
     linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,.35)),
-    url("background.png"); /* ← png, не jpg */
+    url("background.png");
     background-size:cover;
     background-position:center;
     z-index:-3;
@@ -99,6 +99,15 @@ main{
     flex-direction:column;
     padding:25px;
     animation:fade .8s;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Экран с карточками — скролл сверху */
+#places {
+    justify-content: flex-start;
+    padding-top: 30px;
+    padding-bottom: 50px;
 }
 
 .screen.active{
@@ -140,41 +149,42 @@ main{
 ================================ */
 
 .title{
-    font-family: "Minecraft", monospace;
+    font-family: 'Press Start 2P', monospace;
     color:#fff;
     text-shadow:
         2px 2px 0 #222,
         4px 4px 0 #000;
     letter-spacing:2px;
-    font-size: 72px; /* Добавил размер */
+    font-size: 72px;
     margin-bottom: 20px;
 }
 
 .section-title{
-    margin-bottom:35px;
-    font-size:38px;
+    margin-bottom:25px;
+    font-size:28px;
+    font-family: 'Press Start 2P', monospace;
 }
 
 h2{
-    font-size:36px;
-    margin-bottom:25px;
+    font-size:28px;
+    margin-bottom:20px;
 }
 
 h3{
     margin-top:10px;
     margin-bottom:15px;
-    font-size: 24px;
+    font-size: 20px;
 }
 
 .text{
-    font-size:20px;
+    font-size:18px;
     line-height:1.8;
     margin-bottom:20px;
 }
 
 .typing{
     min-height:120px;
-    font-size:22px;
+    font-size:18px;
     line-height:1.8;
 }
 
@@ -184,13 +194,13 @@ h3{
 ================================ */
 
 .btn{
-    margin-top:30px;
-    padding:16px 42px;
+    margin-top:25px;
+    padding:16px 35px;
     border:none;
     border-radius:50px;
     cursor:pointer;
     color:#fff;
-    font-size:18px;
+    font-size:16px;
     font-weight:600;
     transition:.35s;
     background:
@@ -198,14 +208,12 @@ h3{
     box-shadow:
     0 15px 35px rgba(255,70,140,.35);
     animation: pulse 2s infinite;
+    white-space: nowrap;
 }
 
 .btn:hover{
-    transform:
-    translateY(-5px)
-    scale(1.05);
-    box-shadow:
-    0 20px 45px rgba(255,70,140,.55);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 20px 45px rgba(255,70,140,.55);
 }
 
 .btn:active{
@@ -213,26 +221,49 @@ h3{
 }
 
 .yes{
-    background:
-    linear-gradient(135deg,#ff3b8d,#ff6cab);
+    background: linear-gradient(135deg,#ff3b8d,#ff6cab);
 }
 
 .no{
-    background:
-    linear-gradient(135deg,#555,#777);
-    position:relative;
+    background: linear-gradient(135deg, #555, #777);
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+    max-width: 90vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.no:hover {
+    transform: scale(0.9);
+    opacity: 0.8;
 }
 
 @keyframes pulse{
-    0%{
-        transform:scale(1);
-    }
-    50%{
-        transform:scale(1.03);
-    }
-    100%{
-        transform:scale(1);
-    }
+    0%{ transform:scale(1); }
+    50%{ transform:scale(1.03); }
+    100%{ transform:scale(1); }
+}
+
+
+/* ================================
+    RANDOM BUTTON
+================================ */
+
+.random-btn {
+    margin-top: 25px;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #a855f7, #6366f1);
+    box-shadow: 0 15px 35px rgba(168, 85, 247, 0.35);
+    animation: pulse 2s infinite;
+    font-size: 16px;
+    padding: 16px 35px;
+}
+
+.random-btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 20px 45px rgba(168, 85, 247, 0.55);
 }
 
 
@@ -240,19 +271,20 @@ h3{
     CARDS
 ================================ */
 
-.cards{
+.cards {
     width:100%;
-    max-width:1200px;
+    max-width:1100px;
     display:grid;
-    grid-template-columns:
-    repeat(auto-fit,minmax(260px,1fr));
-    gap:25px;
+    grid-template-columns: repeat(3, 1fr);
+    gap:18px;
+    padding: 10px;
+    padding-bottom: 20px;
 }
 
 .card{
     cursor:pointer;
-    border-radius:25px;
-    padding:30px;
+    border-radius:20px;
+    padding:25px 18px;
     text-align:center;
     backdrop-filter:blur(15px);
     background:rgba(255,255,255,.10);
@@ -266,11 +298,7 @@ h3{
     content:"";
     position:absolute;
     inset:0;
-    background:
-    linear-gradient(45deg,
-    transparent,
-    rgba(255,255,255,.15),
-    transparent);
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,.15), transparent);
     transform:translateX(-100%);
 }
 
@@ -280,32 +308,68 @@ h3{
 }
 
 .card:hover{
-    transform:
-    translateY(-12px)
-    scale(1.04);
+    transform: translateY(-10px) scale(1.03);
     border-color:#ff7cbf;
-    box-shadow:
-    0 20px 50px rgba(255,80,150,.4);
+    box-shadow: 0 20px 50px rgba(255,80,150,.4);
 }
 
 .card.selected{
     border:2px solid #ff8fc8;
-    background:rgba(255,110,170,.18);
+    background:rgba(255,110,170,.25);
 }
 
-.emoji{
-    font-size:64px;
-    margin-bottom:20px;
+/* Эмодзи и иконки */
+.emoji {
+    font-size: 55px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85px;
+}
+
+.place-icon {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.3));
+    transition: transform 0.3s;
+}
+
+.card:hover .place-icon {
+    transform: scale(1.2) rotate(5deg);
+}
+
+/* Картинка-фон в карточке */
+.card-image {
+    width: 100%;
+    height: 130px;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.card:hover .card-image img {
+    transform: scale(1.1);
 }
 
 .card h3{
-    font-size:28px;
+    font-size: 22px;
+    margin-bottom: 5px;
 }
 
 .card p{
-    margin-top:12px;
-    line-height:1.7;
+    margin-top:8px;
+    line-height:1.6;
     opacity:.9;
+    font-size: 14px;
 }
 
 
@@ -314,14 +378,14 @@ h3{
 ================================ */
 
 input[type=date]{
-    margin-top:25px;
-    padding:18px;
+    margin-top:20px;
+    padding:16px;
     border:none;
     outline:none;
     border-radius:15px;
     width:100%;
-    font-size:20px;
-    font-family: "Minecraft", monospace;
+    font-size:18px;
+    font-family: 'Press Start 2P', monospace;
     background: rgba(255,255,255,0.9);
     color: #333;
 }
@@ -333,25 +397,19 @@ input[type=date]{
 
 .big-heart{
     margin-top:30px;
-    font-size:100px;
+    font-size:90px;
     animation:heartBeat 1.5s infinite;
 }
 
 .finishText{
     margin-top:15px;
-    font-size:22px;
+    font-size:20px;
 }
 
 @keyframes heartBeat{
-    0%{
-        transform:scale(1);
-    }
-    50%{
-        transform:scale(1.25);
-    }
-    100%{
-        transform:scale(1);
-    }
+    0%{ transform:scale(1); }
+    50%{ transform:scale(1.25); }
+    100%{ transform:scale(1); }
 }
 
 
@@ -361,17 +419,16 @@ input[type=date]{
 
 #musicBtn{
     position:fixed;
-    right:25px;
-    bottom:25px;
-    width:65px;
-    height:65px;
+    right:20px;
+    bottom:20px;
+    width:60px;
+    height:60px;
     border:none;
     border-radius:50%;
     cursor:pointer;
-    font-size:28px;
+    font-size:26px;
     color:#fff;
-    background:
-    rgba(255,255,255,.18);
+    background: rgba(255,255,255,.18);
     backdrop-filter:blur(15px);
     transition:.3s;
     z-index: 1000;
@@ -403,22 +460,18 @@ input[type=date]{
 
 @keyframes floatUp{
     from{
-        transform:
-        translateY(0)
-        rotate(0);
+        transform: translateY(0) rotate(0);
         opacity:1;
     }
     to{
-        transform:
-        translateY(-120vh)
-        rotate(360deg);
+        transform: translateY(-120vh) rotate(360deg);
         opacity:0;
     }
 }
 
 
 /* ================================
-    MOBILE
+    MOBILE (планшеты)
 ================================ */
 
 @media(max-width:768px){
@@ -427,105 +480,136 @@ input[type=date]{
     }
 
     .title{
-        font-size:36px; /* Уменьшил для мобильных */
+        font-size:42px;
     }
 
     h2{
-        font-size:24px;
+        font-size:22px;
     }
 
     .section-title{
-        font-size:28px;
+        font-size:24px;
+        margin-bottom: 20px;
     }
 
     .text{
-        font-size:16px;
+        font-size:15px;
     }
 
     .typing{
-        font-size:16px;
+        font-size:15px;
     }
 
     .cards{
-        grid-template-columns:1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap:12px;
+        padding: 8px;
+    }
+    
+    .card {
+        padding: 18px 12px;
+        border-radius: 18px;
+    }
+    
+    .emoji {
+        font-size: 40px;
+        height: 65px;
+        margin-bottom: 10px;
+    }
+    
+    .place-icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .card-image {
+        height: 100px;
+    }
+    
+    .card h3 {
+        font-size: 16px;
+    }
+    
+    .card p {
+        font-size: 11px;
+        line-height: 1.4;
     }
 
     .btn{
         width:100%;
-        font-size: 16px;
+        font-size: 15px;
+        padding: 14px 25px;
     }
 
-    .emoji{
-        font-size:52px;
+    .random-btn {
+        font-size: 15px;
+        padding: 14px 25px;
+    }
+
+    #musicBtn{
+        width:50px;
+        height:50px;
+        font-size:22px;
+        right:15px;
+        bottom:15px;
+    }
+    
+    .big-heart{
+        font-size:70px;
+    }
+    
+    .finishText{
+        font-size:17px;
+    }
+}
+
+
+/* ================================
+    MOBILE (маленькие телефоны)
+================================ */
+
+@media(max-width:400px){
+    .title{
+        font-size:32px;
+    }
+    
+    .section-title{
+        font-size:20px;
+    }
+    
+    .cards{
+        grid-template-columns: repeat(2, 1fr);
+        gap:8px;
+    }
+    
+    .card {
+        padding: 14px 8px;
+    }
+    
+    .emoji {
+        font-size: 35px;
+        height: 55px;
+    }
+    
+    .place-icon {
+        width: 42px;
+        height: 42px;
+    }
+    
+    .card-image {
+        height: 80px;
     }
     
     .card h3 {
-        font-size: 22px;
+        font-size: 14px;
     }
     
     .card p {
-        font-size: 14px;
+        font-size: 10px;
     }
-}
-.emoji {
-    font-size: 64px;
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100px;
-}
-
-.place-icon {
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-    transition: transform 0.3s;
-}
-
-.card:hover .place-icon {
-    transform: scale(1.2) rotate(5deg);
-}
-.card-image {
-    width: 100%;
-    height: 150px;
-    border-radius: 15px;
-    overflow: hidden;
-    margin-bottom: 15px;
-}
-
-.card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s;
-}
-
-.card:hover .card-image img {
-    transform: scale(1.1);
-}
-.no{
-    background: linear-gradient(135deg, #555, #777);
-    position: relative;
-    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    cursor: pointer;
-    user-select: none;
-}
-
-.no:hover {
-    transform: scale(0.9);
-    opacity: 0.8;
-}
-.random-btn {
-    margin-top: 30px;
-    background: linear-gradient(135deg, #a855f7, #6366f1);
-    box-shadow: 0 15px 35px rgba(168, 85, 247, 0.35);
-    animation: pulse 2s infinite;
-    font-size: 20px;
-    padding: 18px 45px;
-}
-
-.random-btn:hover {
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 20px 45px rgba(168, 85, 247, 0.55);
+    
+    .btn {
+        font-size: 13px;
+        padding: 12px 20px;
+    }
 }
