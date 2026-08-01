@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>❤️ Приглашение на свидание ❤️</title>
+
+    <!-- Шрифт -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+</head>
+<body>
+
+<div id="hearts"></div>
+
+<div class="background"></div>
+
+<div class="overlay"></div>
+
+<main>
+
+    <!-- ====================== -->
+    <!-- Экран 1 -->
+    <!-- ====================== -->
+
+    <section class="screen active" id="welcome">
+
+        <div class="glass">
+
+            <h1 class="text">
+                ❤️ Прив ❤️
+            </h1>
+
+            <p class="typing" id="typingText"></p>
+
+            <button class="btn next-btn" data-next="story">
+                Продолжить ✨
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- ====================== -->
+    <!-- Экран 2 -->
+    <!-- ====================== -->
+
+    <section class="screen" id="story">
+
+        <div class="glass">
+
+            <h2>💌</h2>
+
+            <p class="text">
+                А теперь давай выберим
+                одно из предложенных мест
+            </p>
+
+            <p class="text">
+                я много думал куда-что пойти,
+                так же есть кнопка рандома:3
+            </p>
+
+            <button class="btn next-btn"
+                    data-next="places">
+                Выбрать место 📍
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- ====================== -->
+    <!-- Выбор места -->
+    <!-- ====================== -->
+
+    <section class="screen" id="places">
+
+        <h2 class="section-title">
+            📍 Выбери место
+        </h2>
+
+        <div class="cards">
+
+            <div class="card place-card" data-place=" 🏕️ остров">
+    <div class="card-image">
+        <img src="./images/losi.jpg" alt="острови">
+    </div>
+    <h3>Лосиный остров</h3>
+    <p>Это где круто на трамвае кататься.</p>
+</div>
+
+<div class="card place-card" data-place=" 🏆 Рекордиум">
+    <div class="emoji">
+        <img src="./images/rec.png" alt="Рекордиум" class="place-icon">
+    </div>
+    <h3>Рекордиум</h3>
+    <p>Та забавная штука про рекорды да и вообще хайп.</p>
+</div>
+
+<div class="card place-card" data-place="🎬 Кино">
+    <div class="emoji">
+        <img src="./images/cinema.jpg" alt="Кино" class="place-icon">
+    </div>
+    <h3>Кино</h3>
+    <p>На миньонов.</p>
+</div>
+
+<div class="card place-card" data-place="🌇 Заброшка/Крыша">
+    <div class="emoji">
+        <img src="./images/zabr.jpg" alt="Заброшка/Крыша" class="place-icon">
+    </div>
+    <h3>Заброшка/Крыша</h3>
+    <p>Попаркурить либо попить пиво</p>
+</div>
+
+<div class="card place-card" data-place="🍕 Готовка">
+    <div class="emoji">
+        <img src="./images/chill.jpg" alt="Готовка" class="place-icon">
+    </div>
+    <h3>Готовка</h3>
+    <p>Приготовить что-то вкусное и посмотреть какой-нибдуь фильм</p>
+</div>
+
+<div class="card place-card" data-place="🌹 Купаться">
+    <div class="emoji">
+        <img src="./images/rive.jpg" alt="Купаться" class="place-icon">
+    </div>
+    <h3>Купаться</h3>
+    <p>Можно как и на речку как и в бассейн</p>
+</div>
+<button class="btn random-btn" id="randomBtn">
+        🎲 Выбрать случайно
+    </button>
+
+        </div>
+
+    </section>
+
+    <!-- ====================== -->
+    <!-- Выбор даты -->
+    <!-- ====================== -->
+
+    <section class="screen"
+             id="dateScreen">
+
+        <div class="glass">
+
+            <h2>
+                📅 Теперь выбери дату
+            </h2>
+
+            <input
+                    type="date"
+                    id="datePicker">
+
+            <button
+                    id="dateBtn"
+                    class="btn">
+
+                Продолжить ❤️
+
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- ====================== -->
+    <!-- Итог -->
+    <!-- ====================== -->
+
+    <section class="screen"
+             id="summary">
+
+        <div class="glass">
+
+            <h2>
+                ❤️ Отличный выбор!
+            </h2>
+
+            <p id="selectedPlace"></p>
+
+            <p id="selectedDate"></p>
+
+            <br>
+
+            <h3>
+                Остался последний вопрос...
+            </h3>
+
+            <button
+                    class="btn yes"
+                    id="yesBtn">
+
+                💖 Да, конечно!
+
+            </button>
+
+            <button
+                    class="btn no"
+                    id="noBtn">
+
+                🙈 Нет
+
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- ====================== -->
+    <!-- Финал -->
+    <!-- ====================== -->
+
+    <section class="screen"
+             id="finish">
+
+        <div class="glass">
+
+            <h1>
+                🎉 Ура! 🎉
+            </h1>
+
+            <h2>
+                Спасибо ❤️
+            </h2>
+
+            <p class="finishText">
+
+                Это я делал в момент когда делал вид что работал :>
+
+            </p>
+
+            <p class="finishText">
+
+                Люблю тебя
+
+            </p>
+
+            <div class="big-heart">
+
+                ❤️
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- Музыка -->
+
+
+<audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+    <source src="music.ogg" type="audio/ogg">
+</audio>
+
+
+<!-- Кнопка музыки -->
+
+
+<button id="musicBtn">
+    🎵
+</button>
+
+<!-- ====================== -->
+<!-- JavaScript -->
+<!-- ====================== -->
+
+<script src="script.js"></script>
+
+</body>
+</html>

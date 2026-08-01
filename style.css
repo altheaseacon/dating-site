@@ -1,0 +1,531 @@
+/* ================================
+   RESET
+================================ */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family: 'Press Start 2P', monospace;
+    overflow:hidden;
+    color:#fff;
+    width:100%;
+    height:100vh;
+    background:#120312;
+}
+
+h1, h2, h3, h4, h5, h6, 
+p, button, input, 
+.text, .typing, 
+.card h3, .card p, 
+.finishText, .btn {
+    font-family: 'Press Start 2P', monospace;
+}
+
+
+/* ================================
+    BACKGROUND
+================================ */
+
+.background{
+    position:fixed;
+    inset:0;
+    background:
+    linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,.35)),
+    url("background.png"); /* ← png, не jpg */
+    background-size:cover;
+    background-position:center;
+    z-index:-3;
+    animation:bgMove 35s ease-in-out infinite alternate;
+}
+
+@keyframes bgMove{
+    from{
+        transform:scale(1);
+    }
+    to{
+        transform:scale(1.15);
+    }
+}
+
+
+/* ================================
+    OVERLAY
+================================ */
+
+.overlay{
+    position:fixed;
+    inset:0;
+    background:
+    radial-gradient(circle at top,
+    rgba(255,170,210,.25),
+    transparent 60%),
+    radial-gradient(circle at bottom,
+    rgba(255,0,130,.18),
+    transparent 70%),
+    rgba(0,0,0,.25);
+    z-index:-2;
+}
+
+
+/* ================================
+    MAIN
+================================ */
+
+main{
+    width:100%;
+    height:100vh;
+}
+
+
+/* ================================
+    SCREEN
+================================ */
+
+.screen{
+    position:absolute;
+    inset:0;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    padding:25px;
+    animation:fade .8s;
+}
+
+.screen.active{
+    display:flex;
+}
+
+@keyframes fade{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+
+/* ================================
+    GLASS
+================================ */
+
+.glass{
+    width:min(650px,95%);
+    padding:45px;
+    border-radius:30px;
+    backdrop-filter:blur(18px);
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.2);
+    box-shadow:
+    0 8px 40px rgba(0,0,0,.35),
+    inset 0 1px rgba(255,255,255,.25);
+    text-align:center;
+}
+
+
+/* ================================
+    TITLES
+================================ */
+
+.title{
+    font-family: "Minecraft", monospace;
+    color:#fff;
+    text-shadow:
+        2px 2px 0 #222,
+        4px 4px 0 #000;
+    letter-spacing:2px;
+    font-size: 72px; /* Добавил размер */
+    margin-bottom: 20px;
+}
+
+.section-title{
+    margin-bottom:35px;
+    font-size:38px;
+}
+
+h2{
+    font-size:36px;
+    margin-bottom:25px;
+}
+
+h3{
+    margin-top:10px;
+    margin-bottom:15px;
+    font-size: 24px;
+}
+
+.text{
+    font-size:20px;
+    line-height:1.8;
+    margin-bottom:20px;
+}
+
+.typing{
+    min-height:120px;
+    font-size:22px;
+    line-height:1.8;
+}
+
+
+/* ================================
+    BUTTON
+================================ */
+
+.btn{
+    margin-top:30px;
+    padding:16px 42px;
+    border:none;
+    border-radius:50px;
+    cursor:pointer;
+    color:#fff;
+    font-size:18px;
+    font-weight:600;
+    transition:.35s;
+    background:
+    linear-gradient(135deg,#ff4f9b,#ff6ea7,#ff9eb6);
+    box-shadow:
+    0 15px 35px rgba(255,70,140,.35);
+    animation: pulse 2s infinite;
+}
+
+.btn:hover{
+    transform:
+    translateY(-5px)
+    scale(1.05);
+    box-shadow:
+    0 20px 45px rgba(255,70,140,.55);
+}
+
+.btn:active{
+    transform:scale(.95);
+}
+
+.yes{
+    background:
+    linear-gradient(135deg,#ff3b8d,#ff6cab);
+}
+
+.no{
+    background:
+    linear-gradient(135deg,#555,#777);
+    position:relative;
+}
+
+@keyframes pulse{
+    0%{
+        transform:scale(1);
+    }
+    50%{
+        transform:scale(1.03);
+    }
+    100%{
+        transform:scale(1);
+    }
+}
+
+
+/* ================================
+    CARDS
+================================ */
+
+.cards{
+    width:100%;
+    max-width:1200px;
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(260px,1fr));
+    gap:25px;
+}
+
+.card{
+    cursor:pointer;
+    border-radius:25px;
+    padding:30px;
+    text-align:center;
+    backdrop-filter:blur(15px);
+    background:rgba(255,255,255,.10);
+    border:1px solid rgba(255,255,255,.15);
+    transition:.4s;
+    overflow:hidden;
+    position:relative;
+}
+
+.card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+    linear-gradient(45deg,
+    transparent,
+    rgba(255,255,255,.15),
+    transparent);
+    transform:translateX(-100%);
+}
+
+.card:hover::before{
+    transform:translateX(150%);
+    transition:1s;
+}
+
+.card:hover{
+    transform:
+    translateY(-12px)
+    scale(1.04);
+    border-color:#ff7cbf;
+    box-shadow:
+    0 20px 50px rgba(255,80,150,.4);
+}
+
+.card.selected{
+    border:2px solid #ff8fc8;
+    background:rgba(255,110,170,.18);
+}
+
+.emoji{
+    font-size:64px;
+    margin-bottom:20px;
+}
+
+.card h3{
+    font-size:28px;
+}
+
+.card p{
+    margin-top:12px;
+    line-height:1.7;
+    opacity:.9;
+}
+
+
+/* ================================
+    DATE
+================================ */
+
+input[type=date]{
+    margin-top:25px;
+    padding:18px;
+    border:none;
+    outline:none;
+    border-radius:15px;
+    width:100%;
+    font-size:20px;
+    font-family: "Minecraft", monospace;
+    background: rgba(255,255,255,0.9);
+    color: #333;
+}
+
+
+/* ================================
+    FINISH
+================================ */
+
+.big-heart{
+    margin-top:30px;
+    font-size:100px;
+    animation:heartBeat 1.5s infinite;
+}
+
+.finishText{
+    margin-top:15px;
+    font-size:22px;
+}
+
+@keyframes heartBeat{
+    0%{
+        transform:scale(1);
+    }
+    50%{
+        transform:scale(1.25);
+    }
+    100%{
+        transform:scale(1);
+    }
+}
+
+
+/* ================================
+    MUSIC
+================================ */
+
+#musicBtn{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    width:65px;
+    height:65px;
+    border:none;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:28px;
+    color:#fff;
+    background:
+    rgba(255,255,255,.18);
+    backdrop-filter:blur(15px);
+    transition:.3s;
+    z-index: 1000;
+}
+
+#musicBtn:hover{
+    transform:scale(1.1);
+}
+
+
+/* ================================
+    HEARTS
+================================ */
+
+#hearts{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index: 100;
+}
+
+.heart{
+    position:absolute;
+    bottom:-50px;
+    color:#ff77b7;
+    animation:floatUp linear forwards;
+}
+
+@keyframes floatUp{
+    from{
+        transform:
+        translateY(0)
+        rotate(0);
+        opacity:1;
+    }
+    to{
+        transform:
+        translateY(-120vh)
+        rotate(360deg);
+        opacity:0;
+    }
+}
+
+
+/* ================================
+    MOBILE
+================================ */
+
+@media(max-width:768px){
+    .glass{
+        padding:30px 20px;
+    }
+
+    .title{
+        font-size:36px; /* Уменьшил для мобильных */
+    }
+
+    h2{
+        font-size:24px;
+    }
+
+    .section-title{
+        font-size:28px;
+    }
+
+    .text{
+        font-size:16px;
+    }
+
+    .typing{
+        font-size:16px;
+    }
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+    .btn{
+        width:100%;
+        font-size: 16px;
+    }
+
+    .emoji{
+        font-size:52px;
+    }
+    
+    .card h3 {
+        font-size: 22px;
+    }
+    
+    .card p {
+        font-size: 14px;
+    }
+}
+.emoji {
+    font-size: 64px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+
+.place-icon {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    transition: transform 0.3s;
+}
+
+.card:hover .place-icon {
+    transform: scale(1.2) rotate(5deg);
+}
+.card-image {
+    width: 100%;
+    height: 150px;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.card:hover .card-image img {
+    transform: scale(1.1);
+}
+.no{
+    background: linear-gradient(135deg, #555, #777);
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    cursor: pointer;
+    user-select: none;
+}
+
+.no:hover {
+    transform: scale(0.9);
+    opacity: 0.8;
+}
+.random-btn {
+    margin-top: 30px;
+    background: linear-gradient(135deg, #a855f7, #6366f1);
+    box-shadow: 0 15px 35px rgba(168, 85, 247, 0.35);
+    animation: pulse 2s infinite;
+    font-size: 20px;
+    padding: 18px 45px;
+}
+
+.random-btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 20px 45px rgba(168, 85, 247, 0.55);
+}
