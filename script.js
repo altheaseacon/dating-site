@@ -117,7 +117,7 @@ noBtn.addEventListener("click", moveButton);
 
 window.addEventListener("load", () => {
     noBtn.style.position = "relative";
-    noBtn.textContent = "🙈 Нет";
+    noBtn.textContent = " Нет";
 });
 
 
@@ -130,8 +130,8 @@ document.getElementById("yesBtn").addEventListener("click", () => {
     showScreen("finish");
     launchConfetti();
     if (!playing) {
-        music.play();
-        playing = true;
+        music.pause();
+        playing = false;
         musicBtn.innerHTML = "🔊";
     }
 });
